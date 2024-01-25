@@ -40,8 +40,11 @@ public class Main extends World
 
     public void prepare()
     {
-        MainAnimation main = new MainAnimation();
-        addObject(main, getWidth()/2, getHeight()/2-40);
+        //MainAnimation main = new MainAnimation();
+        int x = getWidth()/2;
+        int y = getHeight()/2;
+        //addObject(main, x, y);
+        addObject(new SubLogo(), x-20, y+10);
         //StartText startText = new StartText();
         //addObject(startText,getWidth()/2,560);
 

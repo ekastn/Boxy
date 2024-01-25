@@ -74,7 +74,9 @@ public class Player extends Actor
 
     public void jump() {
         if (Greenfoot.isKeyDown("space") && !jump) {
-            Greenfoot.playSound("jump.wav");
+            GreenfootSound  sound = new GreenfootSound("jump.wav");
+            sound.setVolume(60);
+            sound.play();
             if (!isFliped()) {
                 velY -= jumpscl;
             } else {
