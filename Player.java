@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import processing.core.PVector;
+
 /**
  * Write a description of class Player here.
  * 
@@ -13,10 +13,10 @@ public class Player extends Actor
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
 
-    PVector gravity = new PVector(0, 0.4f);
-    PVector vel = new PVector();
-    PVector acc = new PVector();
-    PVector initPos;
+    private float initPosX, initPosY;
+
+    private float velX, velY;
+    private float gravityX, gravityY;
 
     GreenfootImage img;
 
@@ -31,6 +31,12 @@ public class Player extends Actor
         img.setColor(new Color(255, 239, 232));
         img.fill();
         setImage(img);
+
+        // Initialize gravity and velocity
+        gravityX = 0;
+        gravityY = 0.4f;
+        velX = 0;
+        velY = 0;
     }
 
     public void act()
@@ -40,24 +46,27 @@ public class Player extends Actor
         flipGravity();
         jump();
         move();
-        
-        setLocation(getX() + (int)vel.x, getY() + (int)vel.y);
-        vel.x = 0;
+
+        setLocation(getX() + (int)velX, getY() + (int)velY);
+        velX = 0;
     }
 
     public void reset() {
-        gravity = new PVector(0, 0.4f);
-        vel.mult(0);
-        setLocation((int)initPos.x , (int)initPos.y);
+        // Initialize gravity and velocity
+        gravityX = 0;
+        gravityY = 0.4f;
+        velX = 0;
+        velY = 0;
+        setLocation((int)initPosX , (int)initPosY);
     }
 
     public void move() {
         int speed = 3;
         if (Greenfoot.isKeyDown("right")) {
-            vel.x = speed;
+            velX = speed;
         }
         if (Greenfoot.isKeyDown("left")) {
-            vel.x = -speed;
+            velX = -speed;
         }
         onRightWall();
         onLeftWall();
@@ -67,29 +76,32 @@ public class Player extends Actor
         if (Greenfoot.isKeyDown("space") && !jump) {
             Greenfoot.playSound("jump.wav");
             if (!isFliped()) {
-                vel.y -= jumpscl;
+                velY -= jumpscl;
             } else {
-                vel.y += jumpscl;
+                velY += jumpscl;
             }
         }
     }
 
     public void applyGravity() {
         if (onGround()) {
-            vel.y = 0;
+            velY = 0;
         } else {
-            applyForce(gravity);
+            applyForce(gravityX,gravityY);
             jump = true;
         }
     }
 
-    public void applyForce(PVector f) {
-        vel.add(f);
+    public void applyForce(float forceX, float forceY) {
+        velX += forceX;
+        velY += forceY;
     }
 
     public void flipGravity() {
         if (onHorizon() && !flip) {
-            gravity.mult(-1);
+            //gravity.mult(-1);
+            gravityX = - gravityX;
+            gravityY = - gravityY;
             flip = true;
         } else if(!onHorizon()) {
             flip = false;
@@ -97,7 +109,8 @@ public class Player extends Actor
     }
 
     public boolean isFliped() {
-        return gravity.heading() < 0;
+        //return gravity.heading() < 0;
+        return gravityY < 0;
     }
 
     public boolean onHorizon() {
@@ -117,7 +130,7 @@ public class Player extends Actor
         touchGround(p);
         return true;
     }
-    
+
     public boolean onCeiling() {
         Actor p;
         if (!isFliped()) {
@@ -166,7 +179,7 @@ public class Player extends Actor
         setLocation(getX(), ny);
         jump = false;
     }
-    
+
     public void touchCeiling(Actor p) {
         int ph = p.getImage().getHeight();
         int s = (ph+getImage().getHeight())/2;
@@ -200,12 +213,14 @@ public class Player extends Actor
     public boolean hitObsticle() {
         return isTouching(Obsticle.class);
     }
-    
+
     public boolean hitKey() {
         return isTouching(Key.class);
     }
 
     public void setInitPos() {
-        initPos = new PVector(getX(), getY());
+        //initPos = new PVector(getX(), getY());
+        initPosX = getX();
+        initPosY = getY();
     }
 }
