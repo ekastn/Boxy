@@ -21,9 +21,15 @@ public class Player extends Actor
     GreenfootImage img;
 
     float jumpscl = 6.5f;
+    float gravity = 0.4f;
+    int speed = 3;
 
     boolean jump = false;
     boolean flip = false;
+    
+    float beginTime = getTime();
+    float endTime;
+    float dt;
 
     public Player()
     {
@@ -31,37 +37,44 @@ public class Player extends Actor
         img.setColor(new Color(255, 239, 232));
         img.fill();
         setImage(img);
-
+        
         // Initialize gravity and velocity
         gravityX = 0;
-        gravityY = 0.4f;
+        gravityY = gravity;
         velX = 0;
         velY = 0;
     }
 
     public void act()
-    {
+    {   
+        //endTime = getTime();
+        //dt = endTime - beginTime;
+        //beginTime = endTime;
+        
         onCeiling();
         applyGravity();
         flipGravity();
         jump();
         move();
 
-        setLocation(getX() + (int)velX, getY() + (int)velY);
+        setLocation(getX() + (int)velX, getY() + (int)(velY));
         velX = 0;
+    }
+    
+    public float getTime() {
+        return (float)((double)System.nanoTime() * 1E-9);
     }
 
     public void reset() {
         // Initialize gravity and velocity
         gravityX = 0;
-        gravityY = 0.4f;
+        gravityY = gravity;
         velX = 0;
         velY = 0;
         setLocation((int)initPosX , (int)initPosY);
     }
 
     public void move() {
-        int speed = 3;
         if (Greenfoot.isKeyDown("right")) {
             velX = speed;
         }
@@ -74,8 +87,8 @@ public class Player extends Actor
 
     public void jump() {
         if (Greenfoot.isKeyDown("space") && !jump) {
-            GreenfootSound  sound = new GreenfootSound("jump.wav");
-            sound.setVolume(60);
+            GreenfootSound  sound = new GreenfootSound("jump.mp3");
+            sound.setVolume(30);
             sound.play();
             if (!isFliped()) {
                 velY -= jumpscl;
@@ -89,7 +102,7 @@ public class Player extends Actor
         if (onGround()) {
             velY = 0;
         } else {
-            applyForce(gravityX,gravityY);
+            applyForce(gravityX, gravityY);
             jump = true;
         }
     }
@@ -111,7 +124,6 @@ public class Player extends Actor
     }
 
     public boolean isFliped() {
-        //return gravity.heading() < 0;
         return gravityY < 0;
     }
 

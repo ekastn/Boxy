@@ -51,7 +51,8 @@ public class Door extends Actor
                     Greenfoot.setWorld(new Level6());
                     break;
                 case 6:
-                    Greenfoot.setWorld(new Main());
+                    Main.bgMusic.stop();
+                    Greenfoot.setWorld(new EndingScene());
                     break;
             }
 
