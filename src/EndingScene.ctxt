@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=EndingScene
+comment0.text=\r\n\ EndingScene\ class\ is\ the\ last\ scene\ of\ the\ game.\r\n\ It\ shows\ the\ ending\ animation\ and\ goes\ back\ to\ the\ main\ menu\r\n\ after\ the\ animation\ finishes\ playing.\r\n
+comment1.params=
+comment1.target=EndingScene()
+comment2.params=
+comment2.target=void\ act()
+numComments=3

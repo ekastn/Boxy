@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ControlButton
+comment1.params=dir
+comment1.target=ControlButton(java.lang.String)
+numComments=2

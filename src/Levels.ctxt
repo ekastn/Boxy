@@ -1,0 +1,21 @@
+#BlueJ class context
+comment0.target=Levels
+comment1.params=px\ py\ h
+comment1.target=Levels(int,\ int,\ Heart)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ showControl()
+comment4.params=
+comment4.target=void\ gameOver()
+comment5.params=sx\ sy\ lenx\ leny
+comment5.target=void\ placeBlock(int,\ int,\ int,\ int)
+comment6.params=arr2D\ sx\ sy
+comment6.target=void\ placeBlock(byte[][],\ int,\ int)
+comment7.params=sx\ sy\ lenx\ leny
+comment7.target=void\ placeObsticle(int,\ int,\ int,\ int)
+comment8.params=sx\ sy\ lenx\ leny\ angle
+comment8.target=void\ placeObsticle(int,\ int,\ int,\ int,\ int)
+comment9.params=x\ y\ w
+comment9.target=void\ placeHorizon(int,\ int,\ int)
+numComments=10

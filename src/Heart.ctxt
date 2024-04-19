@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Heart
+comment1.params=
+comment1.target=Heart()
+comment2.params=
+comment2.target=void\ act()
+comment3.params=
+comment3.target=void\ decreaseLives()
+comment4.params=
+comment4.target=boolean\ isEmpty()
+comment5.params=
+comment5.target=void\ show()
+numComments=6
