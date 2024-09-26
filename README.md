@@ -14,6 +14,6 @@ In order to setup and work on this project on your own, you will need to:
 1. Download Greenfoot IDE from: https://www.greenfoot.org/
 
 2. Clone this project:
-`git clone https://github.com/eka-septian/Boxy.git`
+`git clone https://github.com/ekastn/Boxy.git`
 
 3. Once you cloned this project, open the Greenfoot IDE and open the src folder. Then, click the "Run" button to start the game.
